@@ -140,7 +140,11 @@ var getDomainName = function (url, removeSubdomains) {
 		return hostname;
 	}
 
-	// Return the hostname with subdomains removed, if requested.
+	// Use the supplied subdomain removal function, if present.
+	if (typeof removeSubdomains === 'function') {
+		return removeSubdomains(hostname);
+	}
+
 	return (removeSubdomains) ? cleanDomainName(hostname) : hostname;
 
 };
